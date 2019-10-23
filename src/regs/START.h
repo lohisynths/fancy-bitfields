@@ -1,11 +1,15 @@
 #ifndef __REGS_CONFIG0_H__
 #define __REGS_CONFIG0_H__
 
-#include "../utils.h"
+#include "../RegChecker.h"
+#include "RegMap.h"
+
 #define REG_START_TYPEDEF uint8_t
 
-#define PACKED_REGISTER  __attribute__((packed, aligned(sizeof(uint8_t))))
-
+// const char *name = "START";
+// error: ‘name’ is not a valid template argument because ‘name’ is a variable, not the address of a variable
+// find way for passing name as string literal instead of const char name[]
+const char REG_START_NAME[] = "START";
 
 /** \brief Configuration Register 0. */
 struct REG_START {
@@ -38,13 +42,14 @@ struct REG_START {
    *  \brief Bit 7. RESERVED
    */
   REG_START_TYPEDEF :1;
+
+  void debug_print();
+
 } PACKED_REGISTER;
 
 static_assert(sizeof(REG_START) == sizeof(REG_START_TYPEDEF),
-    "Size of CONFIG0_struct is not correct size");
+    "Size of REG_START is not correct size");
 
 void debug_print(const REG_START &input);
-
-
 
 #endif  // __REGS_CONFIG0_H__
