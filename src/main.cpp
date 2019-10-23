@@ -1,6 +1,7 @@
-#include "main.h"
+#include "regs/START.h"
+#include "regs/RegMap.h"
 
-static RegisterChecker<REG_START, REG_START_NAME, ADDR_REG_START> START_REG;
+static Register<REG_START, REG_START_NAME, ADDR_REG_START> START_REG;
 
 int main() {
   uint32_t addr  = START_REG.get_address();

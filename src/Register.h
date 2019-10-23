@@ -1,10 +1,25 @@
 #ifndef __REGCHECKER_H_
 #define __REGCHECKER_H_
 
-#include "utils.h"
+#include <bitset>
+
+/**
+ *  Original source code:
+ *  https://peter.bloomfield.online/2015/10/using-cpp-templates-for-size-based-type-selection/
+ */
+template <std::uint8_t T_numBytes>
+using UintSelector =
+    typename std::conditional<T_numBytes == 1, std::uint8_t,
+        typename std::conditional<T_numBytes == 2, std::uint16_t,
+            typename std::conditional<T_numBytes == 3 || T_numBytes == 4, std::uint32_t,
+                std::uint64_t
+            >::type
+        >::type
+    >::type;
+
 
 template<typename T, const char *NAME, const uint32_t REG_ADDR>
-class RegisterChecker {
+class Register {
 public:
   typedef UintSelector<sizeof(T) / 8> deduced_type;
 
@@ -18,7 +33,7 @@ public:
     return NAME;
   }
 
-  RegisterChecker& operator=(deduced_type v) {
+  Register& operator=(deduced_type v) {
     reg = get_value_T(v);
     return *this;
   }
@@ -40,7 +55,7 @@ public:
     return *(deduced_type*) &reg;
   }
 
-  operator RegisterChecker() const {
+  operator Register() const {
     return reg;
   }
 
@@ -58,12 +73,12 @@ public:
 private:
   deduced_type old_value = { };
 
-  deduced_type get_value_k(T &_reg) {
-    return static_cast<deduced_type>(*reinterpret_cast<deduced_type*>(&_reg));
+  deduced_type get_value_k(T &val) {
+    return static_cast<deduced_type>(*reinterpret_cast<deduced_type*>(&val));
   }
 
-  T get_value_T(deduced_type v) {
-    return static_cast<T>(*reinterpret_cast<T*>(&v));
+  T get_value_T(deduced_type val) {
+    return static_cast<T>(*reinterpret_cast<T*>(&val));
   }
 
 };

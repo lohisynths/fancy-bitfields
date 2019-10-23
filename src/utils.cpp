@@ -1,6 +1,6 @@
-#include "utils.h"
-#include "regs/RegMap.h"
+#include <stdint.h>
 #include <string.h>
+#include <stdio.h>
 
 void print_bit_value(const char *name, const uint8_t data) {
   const size_t len = strlen(name);
@@ -12,13 +12,4 @@ void print_bit_value(const char *name, const uint8_t data) {
     printf("%s \t\t %d", name, data);
   }
   printf("\n");
-}
-
-const char* get_register_name(const uint32_t address) {
-  for (int i = 0; i < num_registers; i++) {
-    if (REGISTER_NAMES[i].key == address) {
-      return REGISTER_NAMES[i].value;
-    }
-  }
-  return "Register name not found";
 }

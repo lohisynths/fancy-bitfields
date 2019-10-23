@@ -1,4 +1,5 @@
 #include "START.h"
+#include "RegMap.h"
 
 void REG_START::debug_print() {
   printf("Debug print register 'REG_START':\n");

@@ -1,8 +1,8 @@
 #ifndef __REGS_CONFIG0_H__
 #define __REGS_CONFIG0_H__
 
-#include "../RegChecker.h"
-#include "RegMap.h"
+#include "../utils.h"
+#include "../Register.h"
 
 #define REG_START_TYPEDEF uint8_t
 
