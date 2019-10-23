@@ -4,8 +4,10 @@
 static Register<REG_START, REG_START_NAME, ADDR_REG_START> START_REG;
 
 int main() {
-  uint32_t addr  = START_REG.get_address();
-  printf("name %s, address 0x%x\n", get_register_name(addr), addr);
+  {
+    uint32_t addr  = START_REG.get_address();
+    printf("name %s, address 0x%x\n", get_register_name(addr), addr);
+  }
 
   {
     START_REG = 0x03;
@@ -21,6 +23,7 @@ int main() {
     printf("START_REG.reg.BIT_FUNC_E value changed to 1 \n");
     printf("changed: %d\n", START_REG.changed());
   }
+
   {
     printf("make no changes\n");
     printf("changed: %d\n", START_REG.changed());
