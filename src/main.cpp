@@ -6,7 +6,8 @@ static Register<REG_START, REG_START_NAME, ADDR_REG_START> START_REG;
 int main() {
   {
     uint32_t addr  = START_REG.get_address();
-    printf("name %s, address 0x%x\n", get_register_name(addr), addr);
+    printf("%s, address 0x%x\n", get_register_name(addr), addr);
+    printf("%s, description %s\n", get_register_name(addr), get_register_description(addr));
   }
 
   {

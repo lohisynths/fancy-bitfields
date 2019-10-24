@@ -4,7 +4,7 @@
 #include "../utils.h"
 #include "../Register.h"
 
-#define REG_START_TYPEDEF uint8_t
+typedef uint8_t reg_start_t;
 
 // const char *name = "START";
 // error: ‘name’ is not a valid template argument because ‘name’ is a variable, not the address of a variable
@@ -19,35 +19,35 @@ struct REG_START {
    *  10 10 Function A 3. <br>
    *  11 11 Function A 4. <br>
    */
-  REG_START_TYPEDEF BIT_FUNC_A :2;
+  reg_start_t BIT_FUNC_A :2;
   /** \brief Bit 2. RESERVED*/
-  REG_START_TYPEDEF :1;
+  reg_start_t :1;
   /** \brief Bit 3. Function B.
    *  Detailed description of the bit functionality.*/
-  REG_START_TYPEDEF BIT_FUNC_B :1;
+  reg_start_t BIT_FUNC_B :1;
   /** \brief Bit 4. Function C.
    *  Detailed description of the bit functionality.*/
-  REG_START_TYPEDEF BIT_FUNC_C :1;
+  reg_start_t BIT_FUNC_C :1;
   /** \brief Bit 5. Function D.
    *  Detailed description of the bit functionality.*/
-  REG_START_TYPEDEF BIT_FUNC_D :1;
+  reg_start_t BIT_FUNC_D :1;
   /** \brief Bit 6. Function E.
    *  Detailed description of the bit functionality.
    */
   /**  0 Some Function E enabled.<br>
    *   1 Some Function E disabled
    */
-  REG_START_TYPEDEF BIT_FUNC_E :1;
+  reg_start_t BIT_FUNC_E :1;
   /**
    *  \brief Bit 7. RESERVED
    */
-  REG_START_TYPEDEF :1;
+  reg_start_t :1;
 
   void debug_print();
 
 } PACKED_REGISTER;
 
-static_assert(sizeof(REG_START) == sizeof(REG_START_TYPEDEF),
+static_assert(sizeof(REG_START) == sizeof(reg_start_t),
     "Size of REG_START is not correct size");
 
 void debug_print(const REG_START &input);

@@ -8,9 +8,9 @@
 struct RegNameAddr {
   const char *value;
   uint32_t key;
+  const char *description;
 };
 
 void print_bit_value(const char *name, const uint8_t data);
-const char* get_register_name(const uint32_t address);
 
 #endif  // __UTILS_H__
