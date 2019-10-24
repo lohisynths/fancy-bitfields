@@ -4,14 +4,16 @@
 #include "../utils.h"
 
 /*  START Register: START Register Description */
-#define ADDR_REG_START      0x00000b00
+#define REG_START_ADDR 0x00000b00
 
-const RegNameAddr REGISTER_NAMES[] = {
+const char REG_START_NAME[] = "START";
+
+const RegisterNames REGISTER_NAMES[] = {
   /* Address of Register Start. */
-  { "ADDR_REG_START", ADDR_REG_START, "Start register description." }
+  { REG_START_NAME, REG_START_ADDR, "Start register description." }
 };
 
-const int num_registers = sizeof(REGISTER_NAMES) / sizeof(RegNameAddr);
+const int num_registers = sizeof(REGISTER_NAMES) / sizeof(RegisterNames);
 
 const char* get_register_name(const uint32_t address);
 const char* get_register_description(const uint32_t address);

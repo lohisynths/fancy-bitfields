@@ -34,6 +34,7 @@ public:
   }
 
   Register& operator=(deduced_type v) {
+//    reg.compare(get_value_T(v));
     reg = get_value_T(v);
     return *this;
   }
@@ -46,6 +47,7 @@ public:
     bool ret = false;
     if (old_value != get_value_k(reg)) {
       ret = true;
+      reg.compare(get_value_T(old_value));
       old_value = get_value_k(reg);
     }
     return ret;
